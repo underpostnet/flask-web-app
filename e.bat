@@ -1,4 +1,7 @@
 @echo off
 
 
-python app.py
+:: python app.py
+
+
+python tkinter-web.py
