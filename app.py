@@ -1,9 +1,11 @@
 
 
 import os
-from underpost_modules import view
-
 import subprocess
+
+from underpost_modules import view
+from flask import Flask
+
 
 print('run path: ', os.getcwd())
 
@@ -16,7 +18,11 @@ else:
     os.chdir('..')
 
 
+# view.render()
 
 
+app = Flask(__name__)
 
-view.render()
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"

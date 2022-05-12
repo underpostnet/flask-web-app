@@ -3,6 +3,9 @@
 ### Install
 
 
+`pip install flask`
+
+
 `pip install tk`
 
 
@@ -12,7 +15,7 @@
 ### Usage
 
 
-- Run http server `python app.py`
+- Run http server `flask run`
 
 
 - Run tkinter webview `python tkinter-web.py`
