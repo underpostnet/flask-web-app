@@ -2,20 +2,30 @@
 
 import os
 import subprocess
+import json
 
 from underpost_modules import view
-from flask import Flask
+from flask import Flask, send_from_directory
 
 
 print('run path: ', os.getcwd())
 
+
+with open('./data/paths.json') as f:
+    dataPaths = json.load(f)
+
+with open('./data/env.json') as f:
+    dataEnv = json.load(f)
+
 # os.path.isfile
-if not os.path.isdir('./underpost-library'):
+if not os.path.isdir('./client/underpost-library'):
+    os.chdir('client')
     p = subprocess.run("git clone https://github.com/underpostnet/underpost-library")
-else:
-    os.chdir('./underpost-library')
-    p = subprocess.run("git pull origin master")
     os.chdir('..')
+else:
+    os.chdir('./client/underpost-library')
+    p = subprocess.run("git pull origin master")
+    os.chdir('../..')
 
 
 # view.render()
@@ -26,3 +36,12 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
+@app.route('/<path:path>')
+def static_file(path):
+    print("static_file", path)
+    return send_from_directory(directory = 'client', path = path) # as_attachment=True
+
+
+if __name__ == '__main__':
+    app.run(port=dataEnv["port"], host=dataEnv["host"]) # debug=True

@@ -1,12 +1,12 @@
 
 
-def render(pathData):
+def render(pathData, envData):
     return """
           <!DOCTYPE html>
             <html lang='""" + pathData["lang"] + """'>
               <head>
 
-                  <meta charset='`+MainProcess.data.charset+`'>
+                  <meta charset='""" + envData["charset"] + """'>
                   <meta content=width=device-width,initial-scale=1.0 name=viewport>
 
                   <title>""" + pathData["title"] + """</title>
@@ -14,10 +14,10 @@ def render(pathData):
                   <meta name ='title' content='""" + pathData["title"] + """'>
                   <meta name ='description' content='""" + pathData["description"] + """'>
 
-                  <script defer src='/init.js'></script>
-                  <script defer src='/util.js'></script>
-                  <script defer src='/vanilla.js'></script>
-                  <script defer type='module' src='/views/""" + pathData["router"] + """'></script>
+                  <script defer src='/static/init.js'></script>
+                  <script defer src='/static/util.js'></script>
+                  <script defer src='/static/vanilla.js'></script>
+                  <script defer type='module' src='/static/""" + pathData["router"] + """'></script>
               </head>
               <body>
                   <render></render>
