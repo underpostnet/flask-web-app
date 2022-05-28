@@ -5,7 +5,18 @@ import subprocess
 import json
 
 from underpost_modules import view
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, render_template, request
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         return do_the_login()
+#     else:
+#         return show_the_login_form()
+
+# <h3>{{ utc_dt }}</h3>
+# https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
+# render_template('index.html', utc_dt=datetime.datetime.utcnow())
 
 
 print('run path: ', os.getcwd())
