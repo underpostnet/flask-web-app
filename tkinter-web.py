@@ -14,5 +14,5 @@ root = tkinter.Tk()
 root.geometry("800x450")
 
 # Open website
-webview.create_window('underpost.net', 'https://underpost.net')
+webview.create_window('underpost.net', 'http://localhost:5000')
 webview.start()
