@@ -116,4 +116,16 @@ inputs.map(inputData => append('.render-form', renderInput({
       };
       console.log("postObj", postObj);
 
+
+
+    fetch("/order_car", {
+           method: "POST",
+           headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify(postObj),
+         })
+     .then((res) => res.json())
+     .then((data) => console.log(data));
+
   };

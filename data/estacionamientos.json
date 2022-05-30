@@ -1,0 +1,42 @@
+[
+  {
+    "estacionamiento": 1,
+    "estado": "disponible",
+    "costo_auto": 500,
+    "costo_dia": 2000,
+    "costo_mes": 60000,
+    "costo_anio": 750000
+  },
+  {
+    "estacionamiento": 2,
+    "estado": "disponible",
+    "costo_auto": 550,
+    "costo_dia": 2500,
+    "costo_mes": 62000,
+    "costo_anio": 450000
+  },
+  {
+    "estacionamiento": 3,
+    "estado": "disponible",
+    "costo_auto": 520,
+    "costo_dia": 2000,
+    "costo_mes": 40000,
+    "costo_anio": 650000
+  },
+  {
+    "estacionamiento": 4,
+    "estado": "disponible",
+    "costo_auto": 600,
+    "costo_dia": 1000,
+    "costo_mes": 60000,
+    "costo_anio": 750000
+  },
+  {
+    "estacionamiento": 5,
+    "estado": "disponible",
+    "costo_auto": 440,
+    "costo_dia": 2000,
+    "costo_mes": 50000,
+    "costo_anio": 740000
+  }
+]

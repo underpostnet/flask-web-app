@@ -81,5 +81,18 @@ def static_file(path):
     return send_from_directory(directory = 'client', path = path) # as_attachment=True
 
 
+# api
+
+# class OrdenEstacionamiento:
+#     def __init__(self):
+
+
+@app.route('/order_car', methods=['POST'])
+def order_car():
+    print(request.get_json())
+    return 'true'
+
+
+
 if __name__ == '__main__':
     app.run(port=dataEnv["port"], host=dataEnv["host"]) # debug=True
