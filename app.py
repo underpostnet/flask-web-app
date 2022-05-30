@@ -63,7 +63,7 @@ app = Flask(__name__, template_folder='templates')
 # vistas
 for dataView in dataPaths:
     @app.route(dataView["uri"])
-    def _index():
+    def renderView():
         return render_template('index.html',
         uri = dataView["uri"],
         title = dataView["title"],
