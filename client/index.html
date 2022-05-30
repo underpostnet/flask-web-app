@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='{{ lang }}'>
+  <head>
+
+      <meta charset='{{ charset }}'>
+      <meta content='width=device-width,initial-scale=1.0' name='viewport'>
+
+      <title>{{ title }}</title>
+
+      <meta name ='title' content='{{ title }}'>
+      <meta name ='description' content='{{ description }}'>
+
+      <script defer src='/underpost-library/init.js'></script>
+      <script defer src='/underpost-library/util.js'></script>
+      <script defer src='/underpost-library/vanilla.js'></script>
+      <script defer type='module' src='/{{ router }}'></script>
+  </head>
+  <body>
+      <render></render>
+  </body>
+</html>

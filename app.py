@@ -18,6 +18,20 @@ from flask import Flask, send_from_directory, render_template, request
 # https://www.digitalocean.com/community/tutorials/how-to-use-templates-in-a-flask-application
 # render_template('index.html', utc_dt=datetime.datetime.utcnow())
 
+# arreglo de estacionamientos(parametros)
+# id:
+# estado:
+# costo generales por auto:
+# costo generales por dia:
+# costo generales por mes:
+# costo generales por año:
+#
+# Auto: -> crud
+# patente:
+# hora de ingreso
+# hora de salida
+# estacionamiento
+
 
 print('run path: ', os.getcwd())
 

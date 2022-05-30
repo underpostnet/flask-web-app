@@ -3,7 +3,7 @@
     "uri": "/",
     "title": "underpost.net",
     "description": "underpost.net interface",
-    "router": "main.js",
+    "router": "index.js",
     "lang": "es"
   }
 ]
