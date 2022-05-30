@@ -62,16 +62,16 @@ app = Flask(__name__, template_folder='templates')
 
 # vistas
 for dataView in dataPaths:
-    if dataView["uri"] == "/":
-        @app.route("/")
-        def _index():
-            return render_template('index.html',
-            uri = dataView["uri"],
-            title = dataView["title"],
-            description = dataView["description"],
-            router = dataView["router"],
-            lang = dataView["lang"],
-            charset = dataEnv["charset"] )
+    @app.route(dataView["uri"])
+    def _index():
+        return render_template('index.html',
+        uri = dataView["uri"],
+        title = dataView["title"],
+        description = dataView["description"],
+        router = dataView["router"],
+        lang = dataView["lang"],
+        charset = dataEnv["charset"] )
+
 
 
 # estaticos
