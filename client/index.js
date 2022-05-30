@@ -1,5 +1,5 @@
 
-
+( async () => {
 
 
 append('render', `
@@ -50,6 +50,27 @@ append('render', `
   `+spr('<br>', 3)+`
 `);
 
+
+let parkings = await new Promise( resolve => {
+  fetch("/parking_available", {
+         method: "GET",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: undefined,
+       })
+   .then((res) => res.json())
+   .then((data) => resolve(data));
+});
+
+parkings =
+parkings.map(x=>{
+  return {
+    value: x,
+    display: x
+  }
+})
+
 const inputs = [
   { name: "patente", type: "text" },
   { name: "hora_ingreso", type: "datetime-local" },
@@ -76,7 +97,7 @@ inputs.map(inputData => append('.render-form', renderInput({
       console.log('click input');
     },
     value: ``,
-    topContent: inputData.type == 'date' ? cap(inputData.name.replaceAll('_', ' ')) : '',
+    topContent: inputData.type == 'datetime-local' ? cap(inputData.name.replaceAll('_', ' ')) : '',
     botContent: '<br>',
     placeholder: cap(inputData.name.replaceAll('_', ' '))
   })));
@@ -89,12 +110,7 @@ inputs.map(inputData => append('.render-form', renderInput({
       content: 'font-size: 14px; padding: 10px;',
       option: 'font-size: 14px; padding: 10px;'
     },
-    data: range(1, 5).map(x=>{
-      return {
-        value: x,
-        display: x
-      }
-    })
+    data: parkings
   }));
 
   append('.render-form', `
@@ -129,3 +145,6 @@ inputs.map(inputData => append('.render-form', renderInput({
      .then((data) => console.log(data));
 
   };
+
+
+})()

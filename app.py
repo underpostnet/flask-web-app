@@ -18,6 +18,9 @@ with open('./data/paths.json') as f:
 with open('./data/env.json') as f:
     dataEnv = json.load(f)
 
+with open('./data/estacionamientos.json') as f:
+    dataEstacionamientos = json.load(f)
+
 # os.path.isfile
 if not os.path.isdir('./client/underpost-library'):
     os.chdir('client')
@@ -62,13 +65,33 @@ def static_file(path):
 #     def __init__(self):
 
 
+
+
+
 @app.route('/order_car', methods=['POST'])
 def order_car():
     # request.method == 'POST'
-    print(request.get_json())
+    body = request.get_json()
+    print('order_car', body)
+
+    indexEst = int(body["estacionamiento"]) - 1;
+    if dataEstacionamientos[indexEst]["estado"] == "disponible":
+       print('valid')
     return 'true'
 
 
+
+
+@app.route('/parking_available', methods=['GET'])
+def parking_available():
+    available = []
+    for est_ in dataEstacionamientos:
+        if est_["estado"]=="disponible":
+            available.append(est_["estacionamiento"])
+
+
+
+    return json.dumps(available)
 
 if __name__ == '__main__':
     app.run(port=dataEnv["port"], host=dataEnv["host"]) # debug=True
