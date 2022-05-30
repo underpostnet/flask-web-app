@@ -4,7 +4,8 @@ import os
 import subprocess
 import json
 
-from underpost_modules import view
+# from [first level folder] import [py script file name]
+
 from flask import Flask, send_from_directory, render_template, request
 
 # @app.route('/login', methods=['GET', 'POST'])
@@ -56,12 +57,24 @@ else:
 # view.render()
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
 
+# vistas
+for dataView in dataPaths:
+    if dataView["uri"] == "/":
+        @app.route("/")
+        def _index():
+            return render_template('index.html',
+            uri = dataView["uri"],
+            title = dataView["title"],
+            description = dataView["description"],
+            router = dataView["router"],
+            lang = dataView["lang"],
+            charset = dataEnv["charset"] )
+
+
+# estaticos
 @app.route('/<path:path>')
 def static_file(path):
     print("static_file", path)
