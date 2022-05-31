@@ -128,7 +128,9 @@ inputs.map(inputData => append('.render-form', renderInput({
         patente: s('.patente').value,
         hora_ingreso: s('.hora_ingreso').value,
         hora_salida: s('.hora_salida').value,
-        estacionamiento: s('.estacionamiento').value
+        estacionamiento: s('.estacionamiento').value,
+        dias: parseInt(((new Date(s('.hora_salida').value).getTime() -
+             new Date(s('.hora_ingreso').value).getTime()) / (24*60*60*1000)))
       };
       console.log("postObj", postObj);
 
@@ -145,6 +147,16 @@ inputs.map(inputData => append('.render-form', renderInput({
      .then((data) => console.log(data));
 
   };
+
+  append('.render-list', renderTableV1( [{ a: 'a' }, { a: 'b' }], {
+      style: {
+        header_row_style: 'border-bottom: 2px solid green;',
+        header_cell_style: '',
+        row_style: 'border-bottom: 2px solid gray;',
+        cell_style: '',
+        minWidth: 'none'
+      }
+  }));
 
 
 })()
