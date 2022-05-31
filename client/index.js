@@ -1,5 +1,7 @@
 
-( async () => {
+const Main = async () => {
+
+htmls('render', '');
 
 
 append('render', `
@@ -15,7 +17,7 @@ append('render', `
 
       .content {
         border: 2px solid green;
-        max-width: 500px;
+        max-width: 700px;
         margin: auto;
         padding: 10px;
       }
@@ -144,11 +146,29 @@ inputs.map(inputData => append('.render-form', renderInput({
            body: JSON.stringify(postObj),
          })
      .then((res) => res.json())
-     .then((data) => console.log(data));
+     .then((data) => {
+       console.log('order_car', data);
+       Main();
+     });
 
   };
 
-  append('.render-list', renderTableV1( [{ a: 'a' }, { a: 'b' }], {
+  append('.render-list', renderTableV1(
+      await new Promise( resolve => {
+              fetch("/parkings", {
+                     method: "GET",
+                     headers: {
+                       "Content-Type": "application/json",
+                     },
+                     body: undefined,
+                   })
+               .then((res) => res.json())
+               .then((data) => {
+                 console.log('parkings', data);
+                 resolve(data);
+               });
+
+            }), {
       style: {
         header_row_style: 'border-bottom: 2px solid green;',
         header_cell_style: '',
@@ -159,4 +179,6 @@ inputs.map(inputData => append('.render-form', renderInput({
   }));
 
 
-})()
+};
+
+Main();

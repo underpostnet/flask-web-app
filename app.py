@@ -145,19 +145,27 @@ def parking_available():
     return json.dumps(available)
 
 def readOrdenesEstacionamientos():
-    print('readOrdenesEstacionamientos');
     mycursor.execute("SELECT * FROM orden_estacionamiento")
     myresult = mycursor.fetchall()
+    returnList = []
     for x in myresult:
-      print(type(x))
-      print(x)
+      # print(type(x))
+      # print(x)
+      # (1, '123', '2022-05-06T20:06', '2022-05-14T20:07', 1, 2000)
+      returnList.append({
+          "patente": x[1],
+          "hora_ingreso": x[2],
+          "hora_salida": x[3],
+          "estacionamiento": x[4],
+          "cobro": x[5]
+      })
 
+    print('readOrdenesEstacionamientos', returnList);
+    return returnList;
 
 @app.route('/parkings', methods=['GET'])
 def parkings():
-    readOrdenesEstacionamientos()
-    return 'true'
-    # return json.dumps(available)
+    return json.dumps(readOrdenesEstacionamientos())
 
 if __name__ == '__main__':
     app.run(port=dataEnv["port"], host=dataEnv["host"]) # debug=True
